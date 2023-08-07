@@ -36,6 +36,11 @@ app.put('/:id', jsonParser, (req, res) => {
   res.send("ok");
 });
 
+app.post('/', jsonParser, (req, res) => {
+  console.log('post');
+  res.send("ok");
+});
+
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });
