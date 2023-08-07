@@ -37,8 +37,14 @@ app.put('/:id', jsonParser, (req, res) => {
 });
 
 app.post('/', jsonParser, (req, res) => {
+  let id = "" + Math.floor(Math.random() * 1000000);
   console.log('post');
-  res.send("ok");
+  var text = fs.readFileSync(fileName,'utf8');
+  var items = JSON.parse(text);
+  items.push(req.body)
+  text = JSON.stringify(items, null, 2);
+  fs.writeFileSync(fileName, text);
+  res.send(id);
 });
 
 app.listen(port, () => {
