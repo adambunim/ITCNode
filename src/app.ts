@@ -10,6 +10,11 @@ app.get('/', (req, res) => {
   res.send(text);
 });
 
+app.delete('/:id', (req, res) => {
+  console.log('delete');
+  res.send("ok");
+});
+
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });
