@@ -41,6 +41,8 @@ app.post('/', jsonParser, (req, res) => {
   console.log('post');
   var text = fs.readFileSync(fileName,'utf8');
   var items = JSON.parse(text);
+  let item = req.body
+  item.id = id
   items.push(req.body)
   text = JSON.stringify(items, null, 2);
   fs.writeFileSync(fileName, text);
