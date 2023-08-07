@@ -4,6 +4,8 @@ import * as fs from 'fs';
 const app = express();
 const port = 3000;
 const fileName = 'items.json';
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json()
 
 app.get('/', (req, res) => {
   console.log('get');
@@ -18,6 +20,18 @@ app.delete('/:id', (req, res) => {
   let items = JSON.parse(text);
   let filtered = items.filter(item => item.id !== id);
   let firteredText = JSON.stringify(filtered, null, 2);
+  fs.writeFileSync(fileName, firteredText);
+  res.send("ok");
+});
+
+app.put('/:id', jsonParser, (req, res) => {
+  let id = req.params.id
+  console.log('put ' + id);
+  let text = fs.readFileSync(fileName,'utf8');
+  var items = JSON.parse(text);
+  items = items.filter(item => item.id !== id);
+  items.push(req.body)
+  let firteredText = JSON.stringify(items, null, 2);
   fs.writeFileSync(fileName, firteredText);
   res.send("ok");
 });
