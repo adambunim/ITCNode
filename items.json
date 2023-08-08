@@ -31,5 +31,12 @@
     "id": "352602",
     "title": "atlantis",
     "details": "drowned"
+  },
+  {
+    "id": "811413",
+    "title": "tel aviv",
+    "details": "has a sea",
+    "lat": 32.06797731843193,
+    "long": 34.76723890234814
   }
 ]

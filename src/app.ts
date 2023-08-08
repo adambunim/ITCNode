@@ -9,16 +9,31 @@ var jsonParser = bodyParser.json()
 
 app.get('/', (req, res) => {
   console.log('get');
-  let filter  = req.query.filter;  
   const text = fs.readFileSync(fileName,'utf8');
-  if (!filter) {
-    res.send(text);
-    return
+  var items = JSON.parse(text);
+  let filter  = req.query.filter; 
+  if (filter) {
+    items = items.filter(item => item.title.includes(filter) || item.details.includes(filter));
   }
-  let items = JSON.parse(text);
-  let filtered = items.filter(item => item.title.includes(filter) || item.details.includes(filter));
-  let firteredText = JSON.stringify(filtered, null, 2);
-  res.send(firteredText);
+  let lat  = Number(req.query.lat); 
+  let long  = Number(req.query.long);
+  if (lat && long) {
+    items = items.filter(item => {
+      if (!item.lat || !item.long) {
+        return false;
+      }
+      if (Math.abs(lat - item.lat) > 0.1) {
+        return false
+      }
+      if (Math.abs(long - item.long) > 0.1) {
+        return false
+      }
+      return true
+    });
+  }
+  let response = JSON.stringify(items, null, 2);
+  res.send(response);
+  return
 });
 
 app.delete('/:id', (req, res) => {
