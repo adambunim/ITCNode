@@ -13,6 +13,16 @@ app.get('/', (req, res) => {
   res.send(text);
 });
 
+app.get('/:filter', (req, res) => {
+  let filter = req.params.filter
+  console.log('get filter '+filter);
+  const text = fs.readFileSync(fileName,'utf8');
+  let items = JSON.parse(text);
+  let filtered = items.filter(item => item.title.includes(filter) || item.details.includes(filter));
+  let firteredText = JSON.stringify(filtered, null, 2);
+  res.send(firteredText);
+});
+
 app.delete('/:id', (req, res) => {
   let id = req.params.id
   console.log('delete ' + id);
