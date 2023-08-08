@@ -1,12 +1,35 @@
 [
-{
-    "id": "1",
-    "title": "milk",
-    "details": "lot of milk"
-},
-{
+  {
     "id": "2",
-    "title": "cookies",
-    "details": "many coockies"
-}
+    "title": "ramat gan",
+    "details": "has bursa",
+    "lat": 32.06860818193719,
+    "long": 34.824742967859436
+  },
+  {
+    "id": "652298",
+    "title": "beer sheva",
+    "details": "capital of the negev",
+    "lat": 31.241636540484635,
+    "long": 34.78556386373617
+  },
+  {
+    "id": "1",
+    "title": "hadera",
+    "details": "has electricity",
+    "lat": 32.439641626282665,
+    "long": 34.92819379673401
+  },
+  {
+    "id": "884284",
+    "title": "gaza",
+    "details": "friendly people",
+    "lat": 31.508666541490285,
+    "long": 34.47144941541845
+  },
+  {
+    "id": "352602",
+    "title": "atlantis",
+    "details": "drowned"
+  }
 ]
