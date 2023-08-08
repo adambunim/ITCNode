@@ -9,14 +9,12 @@ var jsonParser = bodyParser.json()
 
 app.get('/', (req, res) => {
   console.log('get');
+  let filter  = req.query.filter;  
   const text = fs.readFileSync(fileName,'utf8');
-  res.send(text);
-});
-
-app.get('/:filter', (req, res) => {
-  let filter = req.params.filter
-  console.log('get filter '+filter);
-  const text = fs.readFileSync(fileName,'utf8');
+  if (!filter) {
+    res.send(text);
+    return
+  }
   let items = JSON.parse(text);
   let filtered = items.filter(item => item.title.includes(filter) || item.details.includes(filter));
   let firteredText = JSON.stringify(filtered, null, 2);
